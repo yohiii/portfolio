@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name — Robotics Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --white:#ffffff;--off:#f8f7f5;--dark:#1a1a1a;--mid:#555;--light:#999;
+      --accent:#1a1a1a;--border:#e8e6e2;--tag-bg:#f0ede8;--tag-text:#444;
+      --ff:'DM Sans',sans-serif;--fm:'DM Mono',monospace
+    }
+    body{font-family:var(--ff);color:var(--dark);background:var(--white);font-size:15px;line-height:1.6}
+    nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,0.95);border-bottom:1px solid var(--border);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+    .nav-name{font-size:14px;font-weight:500;letter-spacing:0.02em}
+    .nav-links{display:flex;gap:1.5rem}
+    .nav-links a{font-size:13px;color:var(--mid);text-decoration:none;transition:color 0.2s}
+    .nav-links a:hover{color:var(--dark)}
+    .hero{padding:5rem 2rem 4rem;max-width:860px;margin:0 auto}
+    .hero-label{font-family:var(--fm);font-size:12px;color:var(--light);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:1.2rem}
+    .hero h1{font-size:clamp(2.2rem,5vw,3.2rem);font-weight:300;line-height:1.15;letter-spacing:-0.02em;margin-bottom:1.2rem}
+    .hero h1 span{font-weight:500}
+    .hero-sub{font-size:16px;color:var(--mid);max-width:520px;line-height:1.7;margin-bottom:2rem}
+    .hero-links{display:flex;gap:1rem;flex-wrap:wrap}
+    .btn{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:500;padding:8px 16px;border-radius:6px;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:var(--ff)}
+    .btn-dark{background:var(--dark);color:#fff}
+    .btn-dark:hover{background:#333}
+    .btn-outline{background:transparent;color:var(--dark);border:1px solid var(--border)}
+    .btn-outline:hover{background:var(--off)}
+    section{padding:3rem 2rem;max-width:860px;margin:0 auto}
+    .section-label{font-family:var(--fm);font-size:11px;color:var(--light);letter-spacing:0.12em;text-transform:uppercase;margin-bottom:0.6rem}
+    .section-title{font-size:1.35rem;font-weight:500;margin-bottom:2rem;letter-spacing:-0.01em}
+    .divider{height:1px;background:var(--border);max-width:860px;margin:0 auto}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:0.75rem}
+    .skill-group{background:var(--off);border-radius:8px;padding:1rem}
+    .skill-group-label{font-size:11px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--light);margin-bottom:0.5rem}
+    .skill-tags{display:flex;flex-wrap:wrap;gap:4px}
+    .tag{font-size:12px;background:var(--tag-bg);color:var(--tag-text);padding:3px 8px;border-radius:4px;font-family:var(--fm)}
+    .projects-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden}
+    .project-card{background:var(--white);padding:1.5rem;transition:background 0.15s}
+    .project-card:hover{background:var(--off)}
+    .project-header{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:0.6rem}
+    .project-title{font-size:15px;font-weight:500}
+    .project-status{font-family:var(--fm);font-size:11px;padding:3px 8px;border-radius:4px;white-space:nowrap}
+    .status-active{background:#e8f5e9;color:#2e7d32}
+    .status-sim{background:#e3f2fd;color:#1565c0}
+    .project-desc{font-size:13px;color:var(--mid);line-height:1.6;margin-bottom:0.75rem}
+    .project-tags{display:flex;flex-wrap:wrap;gap:4px}
+    .project-tag{font-size:11px;font-family:var(--fm);background:var(--tag-bg);color:var(--tag-text);padding:2px 7px;border-radius:4px}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+    .about-text{font-size:14px;color:var(--mid);line-height:1.8}
+    .about-facts{display:flex;flex-direction:column;gap:0.75rem}
+    .fact{display:flex;flex-direction:column}
+    .fact-label{font-size:11px;font-family:var(--fm);color:var(--light);text-transform:uppercase;letter-spacing:0.08em}
+    .fact-value{font-size:14px;color:var(--dark);font-weight:500}
+    .contact-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:0.75rem}
+    .contact-card{background:var(--off);border-radius:8px;padding:1rem;text-decoration:none;color:var(--dark);transition:background 0.15s;display:block}
+    .contact-card:hover{background:#ede9e2}
+    .contact-card-label{font-size:11px;font-family:var(--fm);color:var(--light);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem}
+    .contact-card-value{font-size:13px;font-weight:500}
+    footer{padding:2rem;text-align:center;font-size:12px;color:var(--light);font-family:var(--fm);border-top:1px solid var(--border);max-width:860px;margin:0 auto}
+    @media(max-width:600px){.about-grid{grid-template-columns:1fr}.hero h1{font-size:2rem}}
+  </style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-name">Your Name</span>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <p class="hero-label">Portfolio — Robotics Engineering</p>
+  <h1>Building robots<br>that <span>move, sense,</span><br>and decide.</h1>
+  <p class="hero-sub">Junior studying Robotics Engineering. Focused on software/controls, hardware integration, and automation. Currently building projects in ROS2 and embedded systems.</p>
+  <div class="hero-links">
+    <a class="btn btn-dark" href="#projects">View projects</a>
+    <a class="btn btn-outline" href="#contact">Get in touch</a>
+    <a class="btn btn-outline" href="#">Resume ↗</a>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<section id="projects">
+  <p class="section-label">Work</p>
+  <p class="section-title">Projects</p>
+  <div class="projects-list">
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title">Autonomous Line-Following Robot with PID Control</span>
+        <span class="project-status status-active">In progress</span>
+      </div>
+      <p class="project-desc">Wheeled robot that follows a line using IR sensors and a PID controller. Built on Arduino Uno with an L298N dual H-bridge motor driver. Tuning Kp, Ki, Kd gain parameters to minimize deviation at speed.</p>
+      <div class="project-tags">
+        <span class="project-tag">Arduino</span>
+        <span class="project-tag">C++</span>
+        <span class="project-tag">PID Control</span>
+        <span class="project-tag">IR Sensing</span>
+        <span class="project-tag">Hardware</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title">3-DOF Robot Arm Simulation — ROS2 + Gazebo + MoveIt</span>
+        <span class="project-status status-sim">Simulation</span>
+      </div>
+      <p class="project-desc">Designed a 3-DOF arm in URDF with gripper, simulated in Gazebo with physics, and configured MoveIt for motion planning. Working toward automated pick-and-place using a Python node and inverse kinematics.</p>
+      <div class="project-tags">
+        <span class="project-tag">ROS2</span>
+        <span class="project-tag">Gazebo</span>
+        <span class="project-tag">MoveIt</span>
+        <span class="project-tag">Python</span>
+        <span class="project-tag">URDF</span>
+        <span class="project-tag">Kinematics</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-header">
+        <span class="project-title">[ Your Next Project ]</span>
+        <span class="project-status" style="background:#f5f0e8;color:#888">Coming soon</span>
+      </div>
+      <p class="project-desc">Add your next project here — Computer Vision Object Tracker, Sensor Fusion, or Automated Sorting System. Each project should include a brief description, tools used, and measurable results.</p>
+      <div class="project-tags">
+        <span class="project-tag">OpenCV</span>
+        <span class="project-tag">Python</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="skills">
+  <p class="section-label">Capabilities</p>
+  <p class="section-title">Technical skills</p>
+  <div class="skills-grid">
+    <div class="skill-group">
+      <p class="skill-group-label">Languages</p>
+      <div class="skill-tags">
+        <span class="tag">Python</span><span class="tag">C/C++</span><span class="tag">MATLAB</span><span class="tag">Bash</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Robotics</p>
+      <div class="skill-tags">
+        <span class="tag">ROS2</span><span class="tag">Gazebo</span><span class="tag">MoveIt</span><span class="tag">URDF</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Hardware</p>
+      <div class="skill-tags">
+        <span class="tag">Arduino</span><span class="tag">Raspberry Pi</span><span class="tag">L298N</span><span class="tag">IR Sensors</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Software</p>
+      <div class="skill-tags">
+        <span class="tag">OpenCV</span><span class="tag">SolidWorks</span><span class="tag">Git</span><span class="tag">Linux</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Concepts</p>
+      <div class="skill-tags">
+        <span class="tag">PID Control</span><span class="tag">Kinematics</span><span class="tag">SLAM</span><span class="tag">Sensor Fusion</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <p class="skill-group-label">Coursework</p>
+      <div class="skill-tags">
+        <span class="tag">Controls</span><span class="tag">Mechatronics</span><span class="tag">Embedded Sys</span><span class="tag">Dynamics</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="about">
+  <p class="section-label">Background</p>
+  <p class="section-title">About me</p>
+  <div class="about-grid">
+    <p class="about-text">I'm a junior studying Robotics Engineering with a focus on software/controls, hardware integration, and industrial automation. I build hands-on projects to bridge the gap between coursework and real-world engineering.<br><br>Currently seeking summer 2026 internships in robotics, controls, or automation engineering. I'm especially interested in roles where software meets hardware — from embedded systems to motion planning.</p>
+    <div class="about-facts">
+      <div class="fact"><span class="fact-label">Degree</span><span class="fact-value">B.S. Robotics Engineering</span></div>
+      <div class="fact"><span class="fact-label">Year</span><span class="fact-value">Junior (Class of 20XX)</span></div>
+      <div class="fact"><span class="fact-label">Focus</span><span class="fact-value">Controls, Hardware, Automation</span></div>
+      <div class="fact"><span class="fact-label">Status</span><span class="fact-value">Seeking Summer 2026 Internship</span></div>
+      <div class="fact"><span class="fact-label">Location</span><span class="fact-value">[ Your City, State ]</span></div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<section id="contact">
+  <p class="section-label">Connect</p>
+  <p class="section-title">Get in touch</p>
+  <div class="contact-grid">
+    <a class="contact-card" href="mailto:you@email.com">
+      <p class="contact-card-label">Email</p>
+      <p class="contact-card-value">you@email.com</p>
+    </a>
+    <a class="contact-card" href="https://linkedin.com/in/yourname" target="_blank">
+      <p class="contact-card-label">LinkedIn</p>
+      <p class="contact-card-value">linkedin.com/in/yourname</p>
+    </a>
+    <a class="contact-card" href="https://github.com/yourname" target="_blank">
+      <p class="contact-card-label">GitHub</p>
+      <p class="contact-card-value">github.com/yourname</p>
+    </a>
+    <a class="contact-card" href="#">
+      <p class="contact-card-label">Resume</p>
+      <p class="contact-card-value">Download PDF ↗</p>
+    </a>
+  </div>
+</section>
+
+<footer>
+  Built with HTML/CSS · [ Your Name ] · Robotics Engineering
+</footer>
+
+</body>
+</html>
