@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yohana Bezuayene | Robotics Engineering</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{--white:#fff;--off:#f8f7f5;--dark:#1a1a1a;--mid:#555;--light:#999;--border:#e8e6e2;--tag-bg:#f0ede8;--tag-text:#444;--ff:'DM Sans',sans-serif;--fm:'DM Mono',monospace}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--ff);color:var(--dark);background:var(--white);font-size:15px;line-height:1.6}
+    nav{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.96);border-bottom:1px solid var(--border);padding:0 2.5rem;display:flex;align-items:center;justify-content:space-between;height:52px}
+    .nav-name{font-size:13px;font-weight:500;letter-spacing:.03em}
+    .nav-links{display:flex;gap:1.75rem}
+    .nav-links a{font-size:12px;color:var(--mid);text-decoration:none;letter-spacing:.03em;transition:color .2s}
+    .nav-links a:hover{color:var(--dark)}
+    .header{padding:5rem 2.5rem 4rem;max-width:900px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:3rem;align-items:start}
+    .header-label{font-family:var(--fm);font-size:11px;color:var(--light);letter-spacing:.12em;text-transform:uppercase;margin-bottom:1rem}
+    .header h1{font-size:clamp(2rem,5vw,3rem);font-weight:300;line-height:1.12;letter-spacing:-.025em;margin-bottom:1rem}
+    .header h1 strong{font-weight:500}
+    .header-school{font-size:13px;color:var(--mid);margin-bottom:.3rem}
+    .header-major{font-family:var(--fm);font-size:12px;color:var(--light);margin-bottom:1.25rem}
+    .header-summary{font-size:15px;color:var(--mid);max-width:480px;line-height:1.75;margin-bottom:1.75rem}
+    .contact-pills{display:flex;flex-wrap:wrap;gap:8px}
+    .pill{font-size:12px;font-family:var(--fm);padding:5px 12px;border-radius:20px;text-decoration:none;border:1px solid var(--border);color:var(--mid);transition:all .2s;white-space:nowrap}
+    .pill:hover{border-color:#aaa;color:var(--dark)}
+    .section{padding:3rem 2.5rem;max-width:900px;margin:0 auto}
+    .divider{height:1px;background:var(--border);max-width:900px;margin:0 auto}
+    .section-eyebrow{font-family:var(--fm);font-size:10px;color:var(--light);letter-spacing:.14em;text-transform:uppercase;margin-bottom:.5rem}
+    .section-heading{font-size:1.25rem;font-weight:500;letter-spacing:-.01em;margin-bottom:1.75rem}
+    .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px}
+    .skill-block{background:var(--off);border-radius:8px;padding:1rem 1.1rem}
+    .skill-block-label{font-size:10px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--light);margin-bottom:.6rem}
+    .tags,.project-tags{display:flex;flex-wrap:wrap;gap:5px}
+    .tag{font-size:11px;font-family:var(--fm);background:#fff;border:1px solid var(--border);color:var(--tag-text);padding:3px 8px;border-radius:4px}
+    .projects-stack{display:flex;flex-direction:column;gap:1px;border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--border)}
+    .project{background:var(--white);padding:1.75rem 2rem;transition:background .15s}
+    .project:hover{background:var(--off)}
+    .project-top{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:.3rem}
+    .project-name{font-size:15px;font-weight:500;line-height:1.3}
+    .project-meta{font-family:var(--fm);font-size:11px;color:var(--light);margin-bottom:.6rem}
+    .project-badge{font-family:var(--fm);font-size:10px;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+    .badge-live{background:#dcfce7;color:#166534}
+    .badge-sim{background:#dbeafe;color:#1e40af}
+    .badge-hw{background:#f5f0e8;color:#7a5a1e}
+    .project-desc{font-size:13px;color:var(--mid);line-height:1.65;margin-bottom:.85rem}
+    .ptag{font-size:11px;font-family:var(--fm);background:var(--tag-bg);color:var(--tag-text);padding:2px 8px;border-radius:4px}
+    .project-link{display:inline-block;font-size:12px;color:var(--mid);text-decoration:none;margin-top:.75rem;font-family:var(--fm);transition:color .15s}
+    .project-link:hover{color:var(--dark)}
+    .gallery-grid{display:flex;flex-direction:column;gap:1.5rem}
+    .gallery-item{border-radius:10px;overflow:hidden;border:1px solid var(--border)}
+    .gallery-placeholder{width:100%;height:260px;background:var(--off);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.5rem}
+    .gallery-placeholder-icon{font-size:2rem;opacity:.25}
+    .gallery-placeholder-text{font-size:12px;font-family:var(--fm);color:var(--light)}
+    .gallery-caption{padding:1.1rem 1.25rem;background:var(--white)}
+    .gallery-caption-title{font-size:14px;font-weight:500;margin-bottom:.25rem}
+    .gallery-caption-desc{font-size:12px;color:var(--mid);line-height:1.6}
+    .course-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}
+    .course-card{background:var(--off);border-radius:8px;padding:1rem 1.1rem}
+    .course-name{font-size:13px;font-weight:500;margin-bottom:.2rem}
+    .course-detail{font-size:11px;color:var(--light);font-family:var(--fm)}
+    .leadership-item{padding:1.25rem 0;border-bottom:1px solid var(--border)}
+    .leadership-item:last-child{border-bottom:none}
+    .leadership-top{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap;margin-bottom:.2rem}
+    .leadership-role{font-size:14px;font-weight:500}
+    .leadership-date{font-family:var(--fm);font-size:11px;color:var(--light)}
+    .leadership-org{font-size:13px;color:var(--mid);margin-bottom:.4rem;font-style:italic}
+    .leadership-desc{padding-left:1.2rem;margin:0}
+    .leadership-desc li{font-size:13px;color:var(--mid);line-height:1.8}
+    footer{padding:2rem 2.5rem;text-align:center;font-size:11px;color:var(--light);font-family:var(--fm);border-top:1px solid var(--border)}
+    @media(max-width:640px){.header{grid-template-columns:1fr}nav .nav-links{gap:.75rem}}
+  </style>
+</head>
+<body>
+ 
+<nav>
+  <span class="nav-name">Yohana Bezuayene</span>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#coursework">Coursework</a>
+    <a href="#experience">Experience</a>
+    <a href="#leadership">Leadership</a>
+  </div>
+</nav>
+ 
+<div class="header">
+  <div>
+    <p class="header-label">Portfolio</p>
+    <h1>Yohana<br><strong>Bezuayene</strong></h1>
+    <p class="header-school">Minnesota State University, Mankato</p>
+    <p class="header-major">B.S. Robotics Engineering &nbsp;·&nbsp; May ’27</p>
+    <p class="header-summary">I am a Robotics Engineering student passionate about building intelligent machines. I design and develop robotic systems that combine mechanical design, sensors, and software to explore how autonomous systems perceive and interact with the world.</p>
+    <div class="contact-pills">
+      <a class="pill" href="#projects">Projects</a>
+      <a class="pill" href="#gallery">Project Gallery</a>
+      <a class="pill" href="resume.pdf" target="_blank">Resume</a>
+      <a class="pill" href="#contact">Contact</a>
+    </div>
+  </div>
+  <div style="flex-shrink:0">
+    <img src="photo.jpg" alt="Yohana Bezuayene" style="width:270px;height:270px;max-width:100%;object-fit:cover;object-position:center top;border-radius:10px;border:1px solid var(--border);display:block;">
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="skills">
+  <p class="section-eyebrow">Capabilities</p>
+  <p class="section-heading">Technical skills</p>
+  <div class="skills-grid">
+    <div class="skill-block"><p class="skill-block-label">Languages</p><div class="tags"><span class="tag">Python</span><span class="tag">C++</span><span class="tag">Assembly</span><span class="tag">MATLAB</span><span class="tag">HTML5</span><span class="tag">CSS</span><span class="tag">JavaScript</span></div></div>
+    <div class="skill-block"><p class="skill-block-label">Hardware</p><div class="tags"><span class="tag">Arduino</span><span class="tag">STM32</span><span class="tag">Raspberry Pi</span><span class="tag">LiDAR</span><span class="tag">Mecanum Wheels</span><span class="tag">L298N</span><span class="tag">IR Sensors</span><span class="tag">USART</span><span class="tag">I2C</span><span class="tag">SPI</span></div></div>
+    <div class="skill-block"><p class="skill-block-label">Software</p><div class="tags"><span class="tag">ROS2</span><span class="tag">Gazebo</span><span class="tag">MoveIt</span><span class="tag">OpenCV</span><span class="tag">SolidWorks</span><span class="tag">Git</span><span class="tag">Linux</span><span class="tag">AWS</span></div></div>
+    <div class="skill-block"><p class="skill-block-label">Tools</p><div class="tags"><span class="tag">Simulink</span><span class="tag">URDF</span><span class="tag">VS Code</span><span class="tag">GitHub</span><span class="tag">Ubuntu</span></div></div>
+    <div class="skill-block"><p class="skill-block-label">Concepts</p><div class="tags"><span class="tag">PID Control</span><span class="tag">SLAM</span><span class="tag">Path Planning</span><span class="tag">Inverse Kinematics</span><span class="tag">Sensor Fusion</span><span class="tag">Autonomous Navigation</span></div></div>
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="projects">
+  <p class="section-eyebrow">Work</p>
+  <p class="section-heading">Projects</p>
+  <div class="projects-stack">
+ 
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">NAVIS: Autonomous Indoor Navigation and Delivery System</span>
+        <span class="project-badge badge-live">In progress</span>
+      </div>
+      <p class="project-meta">Senior Design Project · Aug 2026 – Present</p>
+      <p class="project-desc">Designing an autonomous guide and delivery robot that eliminates pre-mapping and pre-configuration, enabling zero-setup deployment in any indoor environment. The robot uses real-time SLAM, guided by an uploaded floor plan, to plan routes and guide people or deliver items to a chosen room. Integrating LiDAR, a camera, and mecanum wheels into a ROS2 navigation stack for omnidirectional mobility and dynamic obstacle avoidance in previously unseen spaces.</p>
+      <div class="project-tags"><span class="ptag">ROS2</span><span class="ptag">SLAM</span><span class="ptag">LiDAR</span><span class="ptag">Python</span><span class="ptag">Path Planning</span><span class="ptag">Mecanum Drive</span></div>
+    </div>
+ 
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Q-Bot: Autonomous Navigation System</span>
+        <span class="project-badge badge-live">In progress</span>
+      </div>
+      <p class="project-meta">Applied Robotics Systems Class Project · Aug 2026 – Present</p>
+      <p class="project-desc">Developing a tiered navigation system that combines line-following with LiDAR-based obstacle detection and avoidance. Planned extensions include computer vision target identification and a custom mechanism for payload drop-off or physical obstacle removal.</p>
+      <div class="project-tags"><span class="ptag">LiDAR</span><span class="ptag">OpenCV</span><span class="ptag">ROS2</span><span class="ptag">Python</span><span class="ptag">Autonomous Navigation</span></div>
+    </div>
+ 
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">3-DOF Robot Arm Simulation: ROS2 + Gazebo + MoveIt</span>
+        <span class="project-badge badge-sim">Simulation</span>
+      </div>
+      <p class="project-meta">Independent Project · Feb 2026 – Mar 2026</p>
+      <p class="project-desc">Designed a 3-DOF arm with a two-fingered gripper in URDF, including collision geometry and inertial properties. Simulated physics in Gazebo and configured MoveIt with a custom SRDF and KDL kinematics solver. Developed a Python ROS2 node for joint state publishing, achieving smooth coordinated motion across all three joints.</p>
+      <div class="project-tags"><span class="ptag">ROS2</span><span class="ptag">Gazebo</span><span class="ptag">MoveIt</span><span class="ptag">Python</span><span class="ptag">URDF</span><span class="ptag">Kinematics</span><span class="ptag">Linux</span></div>
+      <a class="project-link" href="https://github.com/yohiii/ros2-robot-arm" target="_blank">View on GitHub &rarr;</a>
+    </div>
+ 
+    <div class="project">
+      <div class="project-top">
+        <span class="project-name">Autonomous Line-Following Robot with PID Control</span>
+        <span class="project-badge badge-hw">Hardware</span>
+      </div>
+      <p class="project-meta">Independent Project · Mar 2026 – Apr 2026</p>
+      <p class="project-desc">Built a 2WD robot on Arduino Uno with an L298N motor driver and a 5-channel IR sensor array, then implemented a PID controller in C++ with tuned Kp, Ki, and Kd parameters to minimize line deviation at speed. Designed and wired the full hardware stack from scratch, including the motor driver, power circuit, battery management, and sensor mount.</p>
+      <div class="project-tags"><span class="ptag">Arduino</span><span class="ptag">C++</span><span class="ptag">PID Control</span><span class="ptag">IR Sensing</span><span class="ptag">L298N</span><span class="ptag">Hardware</span></div>
+      <a class="project-link" href="https://github.com/yohiii" target="_blank">View on GitHub &rarr;</a>
+    </div>
+ 
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="gallery">
+  <p class="section-eyebrow">Visual</p>
+  <p class="section-heading">Project gallery</p>
+  <div class="gallery-grid">
+ 
+    <div class="gallery-item">
+      <div style="overflow:hidden;height:260px">
+        <iframe width="100%" height="260" src="https://www.youtube.com/embed/SPjabnKVdDA" frameborder="0" allowfullscreen style="display:block"></iframe>
+      </div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">3-DOF Robot Arm: ROS2 + Gazebo Simulation</p>
+        <p class="gallery-caption-desc">URDF-defined arm with custom gripper simulated in Gazebo. Joint state publisher driving smooth oscillating motion across all 3 joints.</p>
+      </div>
+    </div>
+ 
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-placeholder-icon">&#9654;</span><span class="gallery-placeholder-text">Photos coming soon</span></div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">NAVIS: Senior Design Robot</p>
+        <p class="gallery-caption-desc">Mecanum-drive platform with LiDAR and camera for zero-setup indoor navigation and delivery.</p>
+      </div>
+    </div>
+ 
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-placeholder-icon">&#9654;</span><span class="gallery-placeholder-text">Photos coming soon</span></div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">Q-Bot: Autonomous Navigation</p>
+        <p class="gallery-caption-desc">Line-following with LiDAR obstacle avoidance on the Q-Bot platform.</p>
+      </div>
+    </div>
+ 
+    <div class="gallery-item">
+      <div class="gallery-placeholder"><span class="gallery-placeholder-icon">&#9654;</span><span class="gallery-placeholder-text">Photos coming soon</span></div>
+      <div class="gallery-caption">
+        <p class="gallery-caption-title">Line-Following Robot: Hardware Build</p>
+        <p class="gallery-caption-desc">Arduino Uno + L298N + 5-channel IR sensor array mounted on a 2WD chassis, with a tuned PID controller.</p>
+      </div>
+    </div>
+ 
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="coursework">
+  <p class="section-eyebrow">Academic</p>
+  <p class="section-heading">Relevant coursework</p>
+  <div class="course-grid">
+    <div class="course-card"><p class="course-name">Applied Robotics Systems</p><p class="course-detail">Integrated autonomous navigation with LiDAR and vision</p></div>
+    <div class="course-card"><p class="course-name">Mobile Robotics</p><p class="course-detail">Navigation and control of mobile platforms</p></div>
+    <div class="course-card"><p class="course-name">Automatic Controls</p><p class="course-detail">Transfer functions, transient response, sensitivity</p></div>
+    <div class="course-card"><p class="course-name">Control Systems</p><p class="course-detail">Feedback control, PID, stability analysis</p></div>
+    <div class="course-card"><p class="course-name">Embedded Systems</p><p class="course-detail">Microcontrollers, real-time programming, I/O</p></div>
+    <div class="course-card"><p class="course-name">Microprocessor Engineering I &amp; II</p><p class="course-detail">STM32, timers, USART, I2C, SPI</p></div>
+    <div class="course-card"><p class="course-name">Dynamics</p><p class="course-detail">Rigid body motion, Newton-Euler equations</p></div>
+    <div class="course-card"><p class="course-name">Robotics Programming in C++</p><p class="course-detail">ROS, motion planning, sensor integration</p></div>
+    <div class="course-card"><p class="course-name">Data Structures in C++</p><p class="course-detail">Arrays, linked lists, trees, graphs, implementation and analysis in C++</p></div>
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="experience">
+  <p class="section-eyebrow">Work</p>
+  <p class="section-heading">Experience</p>
+  <div class="leadership-item">
+    <div class="leadership-top">
+      <span class="leadership-role">Undergraduate Research Assistant</span>
+      <span class="leadership-date">Sep 2024 &ndash; Nov 2024</span>
+    </div>
+    <p class="leadership-org">Minnesota State University, Mankato</p>
+    <ul class="leadership-desc">
+      <li>Contributed to an autonomous robotics research project using the LEGO RCX 2.0 programmable brick</li>
+      <li>Developed demo programs on motor control and autonomy, and created interactive code examples to engage high school students and promote interest in STEM and robotics</li>
+    </ul>
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="leadership">
+  <p class="section-eyebrow">Involvement</p>
+  <p class="section-heading">Leadership &amp; Activities</p>
+ 
+  <div class="leadership-item">
+    <div class="leadership-top">
+      <span class="leadership-role">Founder &amp; President</span>
+      <span class="leadership-date">Dec 2025 &ndash; Present</span>
+    </div>
+    <p class="leadership-org">IEEE Robotics &amp; Automation Society (RAS), MNSU Student Branch Chapter</p>
+    <ul class="leadership-desc">
+      <li>Founded the first IEEE RAS student branch chapter at Minnesota State University, Mankato</li>
+      <li>Recruit and manage a growing membership base of robotics and engineering students</li>
+      <li>Organize technical workshops, speaker events, and hands-on project sessions</li>
+      <li>Build relationships with faculty advisors and industry professionals to create opportunities for members</li>
+    </ul>
+  </div>
+ 
+  <div class="leadership-item">
+    <div class="leadership-top">
+      <span class="leadership-role">Autonomous Robot Design Contestant</span>
+      <span class="leadership-date">June 2025</span>
+    </div>
+    <p class="leadership-org">XRP Orbit Odyssey Competition</p>
+    <ul class="leadership-desc">
+      <li>Co-designed and 3D-printed a custom robot chassis and gripper using CAD software</li>
+      <li>Programmed autonomous navigation and object manipulation routines in Python</li>
+      <li>Calibrated sensors, encoders, and motor drivers for precise motion control and obstacle detection through iterative testing</li>
+    </ul>
+  </div>
+</div>
+ 
+<div class="divider"></div>
+ 
+<div class="section" id="contact">
+  <p class="section-eyebrow">Connect</p>
+  <p class="section-heading">Get in touch</p>
+  <div class="contact-pills" style="gap:10px">
+    <a class="pill" href="mailto:yohana.bezuayene@mnsu.edu">Email: yohana.bezuayene@mnsu.edu</a>
+    <a class="pill" href="tel:+15079020056">Phone: +1(507)902-0056</a>
+    <a class="pill" href="https://linkedin.com/in/yohanabezuayene" target="_blank">LinkedIn</a>
+    <a class="pill" href="https://github.com/yohiii" target="_blank">GitHub</a>
+    <a class="pill" href="resume.pdf" target="_blank">Resume</a>
+  </div>
+</div>
+ 
+<footer>Yohana Bezuayene &nbsp;&middot;&nbsp; Robotics Engineering &nbsp;&middot;&nbsp; Minnesota State University, Mankato</footer>
+ 
+</body>
+</html>
